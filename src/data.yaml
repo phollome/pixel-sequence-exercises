@@ -1,0 +1,7 @@
+exercises:
+  - name: Exercise 1
+    description: This is the first exercise
+    content: |
+      <div class="w-full flex justify-center">
+        <div id="box1" class="w-10 h-10 bg-blue-500"></div>
+      </div>
