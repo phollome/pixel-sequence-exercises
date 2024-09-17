@@ -17,7 +17,7 @@ function Exercise() {
   const resetTriggerRef = React.useRef<HTMLButtonElement | null>(null);
 
   const loaderData = useLoaderData() as {
-    exercise: { content: string; default?: string, grid: string, start?: string };
+    exercise: { content: string; default?: string, grid: string, start?: string, test?: { expect: string; getCurrent: string } };
   };
 
   return (
@@ -54,6 +54,7 @@ function Exercise() {
           <Editor
             defaultValue={loaderData.exercise.default}
             evalTriggerRef={evalTriggerRef}
+            test={loaderData.exercise.test}
           />
         </div>
       </div>

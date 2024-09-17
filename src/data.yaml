@@ -20,21 +20,25 @@ exercises:
       <div class="preview-block red"></div>
       <div class="preview-block blue"></div>
     start: |
-      <div id="block1" class="block"></div>
-      <div id="block2" class="block" style="background-color: darkgray"></div>
-      <div id="block3" class="block"></div>
-      <div id="block4" class="block" style="background-color: darkgray"></div>
-      <div id="block5" class="block" style="background-color: darkgray"></div>
-      <div id="block6" class="block"></div>
-      <div id="block7" class="block" style="background-color: darkgray"></div>
-      <div id="block8" class="block"></div>
-      <div id="block9" class="block"></div>
-      <div id="block10" class="block" style="background-color: darkgray"></div>
-      <div id="block11" class="block"></div>
-      <div id="block12" class="block" style="background-color: darkgray"></div>
-      <div id="block13" class="block" style="background-color: darkgray"></div>
-      <div id="block14" class="block"></div>
-      <div id="block15" class="block" style="background-color: darkgray"></div>
-      <div id="block16xw" class="block"></div>
+      <div id="block1" class="block" style="background-color: gray"></div>
+      <div id="block2" class="block" style="background-color: lightgray"></div>
+      <div id="block3" class="block" style="background-color: gray"></div>
+      <div id="block4" class="block" style="background-color: lightgray"></div>
+      <div id="block5" class="block" style="background-color: lightgray"></div>
+      <div id="block6" class="block" style="background-color: gray"></div>
+      <div id="block7" class="block" style="background-color: lightgray"></div>
+      <div id="block8" class="block" style="background-color: gray"></div>
+      <div id="block9" class="block" style="background-color: gray"></div>
+      <div id="block10" class="block" style="background-color: lightgray"></div>
+      <div id="block11" class="block" style="background-color: gray"></div>
+      <div id="block12" class="block" style="background-color: lightgray"></div>
+      <div id="block13" class="block" style="background-color: lightgray"></div>
+      <div id="block14" class="block" style="background-color: gray"></div>
+      <div id="block15" class="block" style="background-color: lightgray"></div>
+      <div id="block16" class="block" style="background-color: gray"></div>
     default: |
       // Färbt die grauen Blöcke abwechselnd blau und rot (wie im Beispiel)
+    test:
+      expect: ["blue", "red", "blue", "red", "red", "blue", "red", "blue", "blue", "red", "blue", "red", "red", "blue", "red", "blue"]
+      getCurrent: Array.from(document.getElementsByClassName('block')).map(block => block.style.backgroundColor)
+

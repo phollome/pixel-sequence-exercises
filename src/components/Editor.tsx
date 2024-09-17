@@ -2,13 +2,40 @@ import * as MonacoEditor from "@monaco-editor/react";
 import { shikiToMonaco } from "@shikijs/monaco";
 import * as React from "react";
 import { createHighlighter } from "shiki";
+import { assert } from "chai";
+
+function evaluate(code: string) {
+  try {
+    eval(code);
+    return null;
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
+}
+
+function test(options: { expect: string; getCurrent: string }) {
+  try {
+    const expect = eval(options.expect);
+    const current = eval(`(function () {return ${options.getCurrent};})()`);
+    assert.deepEqual(expect, current);
+    return null;
+  } catch (error) {
+    console.error(error);
+    return error as Error;
+  }
+}
 
 function Editor(props: {
   defaultValue?: string;
   evalTriggerRef: React.MutableRefObject<HTMLButtonElement | null>;
+  test?: { expect: string; getCurrent: string };
 }) {
   const { defaultValue = "// ..." } = props;
 
+  const [testErrorMessage, setTestErrorMessage] = React.useState<string | null>(
+    null
+  );
   const editorRef = React.useRef<Parameters<MonacoEditor.OnMount>[0] | null>(
     null
   );
@@ -33,7 +60,17 @@ function Editor(props: {
     if (evalTrigger !== null) {
       const handler = () => {
         if (editorRef.current !== null) {
-          eval(editorRef.current.getValue());
+          const evaluationError = evaluate(editorRef.current.getValue());
+          if (evaluationError !== null) {
+            console.error(evaluationError);
+          } else if (typeof props.test !== "undefined") {
+            const testError = test(props.test);
+            if (testError !== null) {
+              setTestErrorMessage(testError.message);
+            } else {
+              setTestErrorMessage(null);
+            }
+          }
         }
       };
       evalTrigger.addEventListener("click", handler);
@@ -44,13 +81,23 @@ function Editor(props: {
   }, [props.evalTriggerRef]);
 
   return (
-    <MonacoEditor.Editor
-      defaultLanguage="javascript"
-      defaultValue={defaultValue}
-      beforeMount={beforeMount}
-      onMount={onMount}
-      options={{ minimap: { enabled: false }, fontSize: 14, tabSize: 2 }}
-    />
+    <div className="h-full">
+      <MonacoEditor.Editor
+        height={"calc(100% - 1rem)"}
+        defaultLanguage="javascript"
+        defaultValue={defaultValue}
+        beforeMount={beforeMount}
+        onMount={onMount}
+        options={{ minimap: { enabled: false }, fontSize: 14, tabSize: 2 }}
+      />
+      {testErrorMessage !== null && (
+        <div className="flex justify-end items-center h-4 bg-red-500 px-2 text-white text-[0.625rem]">
+        <span className=" line-clamp-1">
+          {testErrorMessage}
+        </span>
+        </div>
+      )}
+    </div>
   );
 }
 
