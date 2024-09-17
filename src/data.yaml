@@ -1,7 +1,40 @@
 exercises:
   - name: Exercise 1
     description: This is the first exercise
+    grid: 4x4
     content: |
-      <div class="w-full flex justify-center">
-        <div id="box1" class="w-10 h-10 bg-blue-500"></div>
-      </div>
+      <div class="preview-block blue"></div>
+      <div class="preview-block red"></div>
+      <div class="preview-block blue"></div>
+      <div class="preview-block red"></div>
+      <div class="preview-block red"></div>
+      <div class="preview-block blue"></div>
+      <div class="preview-block red"></div>
+      <div class="preview-block blue"></div>
+      <div class="preview-block blue"></div>
+      <div class="preview-block red"></div>
+      <div class="preview-block blue"></div>
+      <div class="preview-block red"></div>
+      <div class="preview-block red"></div>
+      <div class="preview-block blue"></div>
+      <div class="preview-block red"></div>
+      <div class="preview-block blue"></div>
+    start: |
+      <div id="block1" class="block"></div>
+      <div id="block2" class="block" style="background-color: darkgray"></div>
+      <div id="block3" class="block"></div>
+      <div id="block4" class="block" style="background-color: darkgray"></div>
+      <div id="block5" class="block" style="background-color: darkgray"></div>
+      <div id="block6" class="block"></div>
+      <div id="block7" class="block" style="background-color: darkgray"></div>
+      <div id="block8" class="block"></div>
+      <div id="block9" class="block"></div>
+      <div id="block10" class="block" style="background-color: darkgray"></div>
+      <div id="block11" class="block"></div>
+      <div id="block12" class="block" style="background-color: darkgray"></div>
+      <div id="block13" class="block" style="background-color: darkgray"></div>
+      <div id="block14" class="block"></div>
+      <div id="block15" class="block" style="background-color: darkgray"></div>
+      <div id="block16xw" class="block"></div>
+    default: |
+      // Färbt die grauen Blöcke abwechselnd blau und rot (wie im Beispiel)

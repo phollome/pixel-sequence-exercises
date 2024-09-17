@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.block, .preview-block {
+  @apply w-5 h-5 bg-gray-500;
+}
+
+.block.blue, .preview-block.blue {
+  background-color: blue;
+}
+
+.block.red, .preview-block.red {
+  background-color: red;
+}
+
