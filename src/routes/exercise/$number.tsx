@@ -1,5 +1,10 @@
 import React from "react";
-import { json, LoaderFunctionArgs, useLoaderData } from "react-router-dom";
+import {
+  json,
+  LoaderFunctionArgs,
+  useLoaderData,
+  useSearchParams,
+} from "react-router-dom";
 import Editor from "../../components/Editor";
 import Stage from "../../components/Stage";
 import data from "../../data.yaml";
@@ -13,6 +18,8 @@ export async function loader(args: LoaderFunctionArgs) {
 }
 
 function Exercise() {
+  const [searchParams] = useSearchParams();
+
   const evalTriggerRef = React.useRef<HTMLButtonElement | null>(null);
   const resetTriggerRef = React.useRef<HTMLButtonElement | null>(null);
 
@@ -21,9 +28,10 @@ function Exercise() {
       name: string;
       expect: string[];
       description?: string;
-      width: number; height: number;
+      width: number;
+      height: number;
       start?: string[];
-      test?: { expect: string; getCurrent: string };
+      solution?: string;
     };
   };
 
@@ -68,7 +76,11 @@ function Exercise() {
         </div>
         <div className="h-1/2 pt-4 border-t bg-zinc-900">
           <Editor
-            defaultValue={loaderData.exercise.description}
+            defaultValue={
+              searchParams.get("solution") !== null
+                ? loaderData.exercise.solution
+                : loaderData.exercise.description
+            }
             evalTriggerRef={evalTriggerRef}
             expect={loaderData.exercise.expect}
           />

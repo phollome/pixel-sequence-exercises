@@ -35,10 +35,20 @@ exercises:
       - lightgray
       - gray
       - lightgray
-      - gray
-      
+      - gray 
     description: |
-      // Färbe die grauen Blöcke wie ein Schachbrett in blau und rot (wie im Beispiel)
+      // Färbe die grauen Blöcke wie ein Schachbrett in blau ("blue") und rot ("red")
+    solution: |
+      const blocks = document.getElementsByClassName("block");
+      
+      for (let i = 0; i < blocks.length; i++) {
+        const block = blocks[i];
+        if (block.style.backgroundColor == "gray") {
+          block.style.backgroundColor = "blue";
+        } else {
+          block.style.backgroundColor = "red";
+        }
+      }
   - name: Odd and Even
     width: 1
     height: 10
@@ -47,7 +57,87 @@ exercises:
       - red
     start:
       - gray
+    description: |
+      // Färbe die grauen Blöcke abwechselnd in weiß ("white") und rot ("red")
+    solution: |
+      const blocks = document.getElementsByClassName("block");
+
+      for (let i = 0; i < blocks.length; i++) {
+        if (i % 2 == 0) {
+          blocks[i].style.backgroundColor = "white";
+        } else {
+          blocks[i].style.backgroundColor = "red";
+        }
+      }
+  - name: Rainbow
+    width: 7
+    height: 7
+    expect:
+      - red
+      - red
+      - red
+      - red
+      - red
+      - red
+      - red
+      - orange
+      - orange
+      - orange
+      - orange
+      - orange
+      - orange
+      - orange
+      - yellow
+      - yellow
+      - yellow
+      - yellow
+      - yellow
+      - yellow
+      - yellow
+      - green
+      - green
+      - green
+      - green
+      - green
+      - green
+      - green
+      - blue
+      - blue
+      - blue
+      - blue
+      - blue
+      - blue
+      - blue
+      - indigo
+      - indigo
+      - indigo
+      - indigo
+      - indigo
+      - indigo
+      - indigo
+      - violet
+      - violet
+      - violet
+      - violet
+      - violet
+      - violet
+      - violet
+    start:
+      - gray
       
     description: |
-      // Färbe die grauen Blöcke abwechselnd in rot und gelb (wie im Beispiel)
+      // Erstelle einen Regebogen
+      // Die Farben sind "red", "orange", "yellow", "green", "blue", "indigo", "violet"
+
+    solution: |
+      const colors = ["red", "orange", "yellow", "green", "blue", "indigo", "violet"];
+      const blocks = document.getElementsByClassName("block");
+      const blocksPerLine = blocks.length / colors.length;
+
+      for (let i = 0; i < colors.length; i++) {
+        for (let j = 0; j < blocksPerLine; j++) {
+          const index = j + (blocksPerLine * i);
+          blocks[index].style.backgroundColor = colors[i];
+        }
+      }
 

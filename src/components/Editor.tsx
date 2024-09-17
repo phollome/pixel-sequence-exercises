@@ -16,9 +16,19 @@ function evaluate(code: string) {
 
 function test(expect: string[]) {
   try {
-    const blocks = document.querySelectorAll("div.block") as NodeListOf<HTMLDivElement>;
-    const current = Array.from(blocks).map((block) => block.style.backgroundColor);
-    assert.deepEqual(expect, current);
+    const blocks = document.querySelectorAll(
+      "div.block"
+    ) as NodeListOf<HTMLDivElement>;
+
+    const sequence = Array.from({ length: blocks.length }, (_, index) => {
+      return expect[index % expect.length];
+    });
+
+    const current = Array.from(blocks).map((block) => {
+      return block.style.backgroundColor;
+    });
+    
+    assert.deepEqual(sequence, current);
     return null;
   } catch (error) {
     console.error(error);
@@ -92,9 +102,7 @@ function Editor(props: {
       />
       {testErrorMessage !== null && (
         <div className="flex justify-end items-center h-4 bg-red-500 px-2 text-white text-[0.625rem]">
-        <span className=" line-clamp-1">
-          {testErrorMessage}
-        </span>
+          <span className=" line-clamp-1">{testErrorMessage}</span>
         </div>
       )}
     </div>
