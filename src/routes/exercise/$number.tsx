@@ -17,7 +17,14 @@ function Exercise() {
   const resetTriggerRef = React.useRef<HTMLButtonElement | null>(null);
 
   const loaderData = useLoaderData() as {
-    exercise: { content: string; default?: string, grid: string, start?: string, test?: { expect: string; getCurrent: string } };
+    exercise: {
+      name: string;
+      expect: string[];
+      description?: string;
+      width: number; height: number;
+      start?: string[];
+      test?: { expect: string; getCurrent: string };
+    };
   };
 
   return (
@@ -25,36 +32,45 @@ function Exercise() {
       <div className="w-full flex flex-col h-dvh bg-white">
         <div className="h-1/2 flex gap-[1px]">
           <Stage
-            type="preview"
-            grid={loaderData.exercise.grid}
-            content={loaderData.exercise.content}
+            type="expect"
+            width={loaderData.exercise.width}
+            height={loaderData.exercise.height}
+            sequence={loaderData.exercise.expect}
           />
           <Stage
             type="canvas"
-            grid={loaderData.exercise.grid}
+            width={loaderData.exercise.width}
+            height={loaderData.exercise.height}
             resetTriggerRef={resetTriggerRef}
-            content={loaderData.exercise.start}
+            sequence={loaderData.exercise.start}
           />
-          <div className="absolute top-0 right-0 m-4 flex gap-2">
-            <button
-              ref={evalTriggerRef}
-              className="py-2 px-4 bg-slate-500 hover:bg-slate-600 active:bg-slate-700 pointer rounded"
-            >
-              Run
-            </button>
-            <button
-              ref={resetTriggerRef}
-              className="py-2 px-4 bg-slate-500 hover:bg-slate-600 active:bg-slate-700 pointer rounded"
-            >
-              Reset
-            </button>
+          <div className="absolute w-full top-0 left-0 p-4 flex justify-between">
+            <div className="flex items-center">
+              <h1 className="text-lg text-gray-300 font-mono">
+                {loaderData.exercise.name}
+              </h1>
+            </div>
+            <div className="flex gap-2">
+              <button
+                ref={evalTriggerRef}
+                className="py-2 px-4 bg-slate-500 hover:bg-slate-600 active:bg-slate-700 pointer rounded"
+              >
+                Run
+              </button>
+              <button
+                ref={resetTriggerRef}
+                className="py-2 px-4 bg-slate-500 hover:bg-slate-600 active:bg-slate-700 pointer rounded"
+              >
+                Reset
+              </button>
+            </div>
           </div>
         </div>
         <div className="h-1/2 pt-4 border-t bg-zinc-900">
           <Editor
-            defaultValue={loaderData.exercise.default}
+            defaultValue={loaderData.exercise.description}
             evalTriggerRef={evalTriggerRef}
-            test={loaderData.exercise.test}
+            expect={loaderData.exercise.expect}
           />
         </div>
       </div>

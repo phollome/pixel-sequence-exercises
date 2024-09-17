@@ -1,44 +1,53 @@
 exercises:
-  - name: Exercise 1
-    description: This is the first exercise
-    grid: 4x4
-    content: |
-      <div class="preview-block blue"></div>
-      <div class="preview-block red"></div>
-      <div class="preview-block blue"></div>
-      <div class="preview-block red"></div>
-      <div class="preview-block red"></div>
-      <div class="preview-block blue"></div>
-      <div class="preview-block red"></div>
-      <div class="preview-block blue"></div>
-      <div class="preview-block blue"></div>
-      <div class="preview-block red"></div>
-      <div class="preview-block blue"></div>
-      <div class="preview-block red"></div>
-      <div class="preview-block red"></div>
-      <div class="preview-block blue"></div>
-      <div class="preview-block red"></div>
-      <div class="preview-block blue"></div>
-    start: |
-      <div id="block1" class="block" style="background-color: gray"></div>
-      <div id="block2" class="block" style="background-color: lightgray"></div>
-      <div id="block3" class="block" style="background-color: gray"></div>
-      <div id="block4" class="block" style="background-color: lightgray"></div>
-      <div id="block5" class="block" style="background-color: lightgray"></div>
-      <div id="block6" class="block" style="background-color: gray"></div>
-      <div id="block7" class="block" style="background-color: lightgray"></div>
-      <div id="block8" class="block" style="background-color: gray"></div>
-      <div id="block9" class="block" style="background-color: gray"></div>
-      <div id="block10" class="block" style="background-color: lightgray"></div>
-      <div id="block11" class="block" style="background-color: gray"></div>
-      <div id="block12" class="block" style="background-color: lightgray"></div>
-      <div id="block13" class="block" style="background-color: lightgray"></div>
-      <div id="block14" class="block" style="background-color: gray"></div>
-      <div id="block15" class="block" style="background-color: lightgray"></div>
-      <div id="block16" class="block" style="background-color: gray"></div>
-    default: |
-      // Färbt die grauen Blöcke abwechselnd blau und rot (wie im Beispiel)
-    test:
-      expect: ["blue", "red", "blue", "red", "red", "blue", "red", "blue", "blue", "red", "blue", "red", "red", "blue", "red", "blue"]
-      getCurrent: Array.from(document.getElementsByClassName('block')).map(block => block.style.backgroundColor)
+  - name: Chessboard
+    width: 8
+    height: 8
+    expect:
+      - blue
+      - red
+      - blue
+      - red
+      - blue
+      - red
+      - blue
+      - red
+      - red
+      - blue
+      - red
+      - blue
+      - red
+      - blue
+      - red
+      - blue
+    start:
+      - gray
+      - lightgray
+      - gray
+      - lightgray
+      - gray
+      - lightgray
+      - gray
+      - lightgray
+      - lightgray
+      - gray
+      - lightgray
+      - gray
+      - lightgray
+      - gray
+      - lightgray
+      - gray
+      
+    description: |
+      // Färbe die grauen Blöcke wie ein Schachbrett in blau und rot (wie im Beispiel)
+  - name: Odd and Even
+    width: 1
+    height: 10
+    expect:
+      - white
+      - red
+    start:
+      - gray
+      
+    description: |
+      // Färbe die grauen Blöcke abwechselnd in rot und gelb (wie im Beispiel)
 

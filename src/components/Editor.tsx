@@ -14,10 +14,10 @@ function evaluate(code: string) {
   }
 }
 
-function test(options: { expect: string; getCurrent: string }) {
+function test(expect: string[]) {
   try {
-    const expect = eval(options.expect);
-    const current = eval(`(function () {return ${options.getCurrent};})()`);
+    const blocks = document.querySelectorAll("div.block") as NodeListOf<HTMLDivElement>;
+    const current = Array.from(blocks).map((block) => block.style.backgroundColor);
     assert.deepEqual(expect, current);
     return null;
   } catch (error) {
@@ -29,7 +29,7 @@ function test(options: { expect: string; getCurrent: string }) {
 function Editor(props: {
   defaultValue?: string;
   evalTriggerRef: React.MutableRefObject<HTMLButtonElement | null>;
-  test?: { expect: string; getCurrent: string };
+  expect?: string[];
 }) {
   const { defaultValue = "// ..." } = props;
 
@@ -63,8 +63,8 @@ function Editor(props: {
           const evaluationError = evaluate(editorRef.current.getValue());
           if (evaluationError !== null) {
             console.error(evaluationError);
-          } else if (typeof props.test !== "undefined") {
-            const testError = test(props.test);
+          } else if (Array.isArray(props.expect)) {
+            const testError = test(props.expect);
             if (testError !== null) {
               setTestErrorMessage(testError.message);
             } else {
