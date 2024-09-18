@@ -1,4 +1,47 @@
 exercises:
+  - name: Star
+    width: 14
+    height: 14
+    expect: [
+      "","","","","","","yellow", "yellow","","","","","","",
+      "","","","","","","yellow", "yellow","","","","","","",
+      "","","","","","yellow","yellow", "yellow","yellow","","","","","",
+      "","","","","","yellow","yellow", "yellow","yellow","","","","","",
+      "yellow","yellow","yellow","yellow","yellow","yellow","yellow", "yellow","yellow","yellow","yellow","yellow","yellow","yellow",
+      "","yellow","yellow","yellow","yellow","","yellow", "yellow","","yellow","yellow","yellow","yellow","",
+      "","","yellow","yellow","yellow","","yellow", "yellow","","yellow","yellow","yellow","","",
+      "","","","yellow","yellow","","yellow", "yellow","","yellow","yellow","","","",
+      "","","","yellow","yellow","yellow","yellow", "yellow","yellow","yellow","yellow","","","",
+      "","","yellow","yellow","yellow","yellow","yellow", "yellow","yellow","yellow","yellow","yellow","","",
+      "","","yellow","yellow","yellow","yellow","yellow", "yellow","yellow","yellow","yellow","yellow","","",
+      "","yellow","yellow","yellow","yellow","yellow","", "","yellow","yellow","yellow","yellow","yellow","",
+      "","yellow","yellow","yellow","","","", "","","","yellow","yellow","yellow","",
+      "yellow","yellow","","","","","", "","","","","","yellow","yellow",
+    ]
+    start: [
+      "","","","","","","gray", "gray","","","","","","",
+      "","","","","","","gray", "gray","","","","","","",
+      "","","","","","gray","gray", "gray","gray","","","","","",
+      "","","","","","gray","gray", "gray","gray","","","","","",
+      "gray","gray","gray","gray","gray","gray","gray", "gray","gray","gray","gray","gray","gray","gray",
+      "","gray","gray","gray","gray","","gray", "gray","","gray","gray","gray","gray","",
+      "","","gray","gray","gray","","gray", "gray","","gray","gray","gray","","",
+      "","","","gray","gray","","gray", "gray","","gray","gray","","","",
+      "","","","gray","gray","gray","gray", "gray","gray","gray","gray","","","",
+      "","","gray","gray","gray","gray","gray", "gray","gray","gray","gray","gray","","",
+      "","","gray","gray","gray","gray","gray", "gray","gray","gray","gray","gray","","",
+      "","gray","gray","gray","gray","gray","", "","gray","gray","gray","gray","gray","",
+      "","gray","gray","gray","","","", "","","","gray","gray","gray","",
+      "gray","gray","","","","","", "","","","","","gray","gray",
+    ]
+    description: |
+      // Färbe den Stern in gelb ("yellow")
+    solution: |
+      const blocks = document.getElementsByClassName("block");
+      
+      for (let i = 0; i < blocks.length; i++) {
+        blocks[i].style.backgroundColor = "yellow";
+      }
   - name: Chessboard
     width: 8
     height: 8

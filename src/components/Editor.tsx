@@ -9,7 +9,6 @@ function evaluate(code: string) {
     eval(code);
     return null;
   } catch (error) {
-    console.log(error);
     return error;
   }
 }
@@ -20,8 +19,12 @@ function test(expect: string[]) {
       "div.block"
     ) as NodeListOf<HTMLDivElement>;
 
+    const expectWithoutEmpty = expect.filter((value) => {
+      return typeof value === "string" && value !== "";
+    });
+
     const sequence = Array.from({ length: blocks.length }, (_, index) => {
-      return expect[index % expect.length];
+      return expectWithoutEmpty[index % expectWithoutEmpty.length];
     });
 
     const current = Array.from(blocks).map((block) => {
@@ -31,7 +34,6 @@ function test(expect: string[]) {
     assert.deepEqual(sequence, current);
     return null;
   } catch (error) {
-    console.error(error);
     return error as Error;
   }
 }
