@@ -71,7 +71,7 @@ function Stage(props: {
               <div
                 id={`block-${index}`}
                 key={`block-${index}`}
-                className="block"
+                className="block transition-colors duration-300 ease-in"
                 style={{ backgroundColor: value }}
               ></div>
             ))}
