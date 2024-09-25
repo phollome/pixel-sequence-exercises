@@ -5,11 +5,17 @@ import {
   createRoutesFromElements,
   redirect,
   Route,
-  RouterProvider
+  RouterProvider,
 } from "react-router-dom";
 import App from "./App.tsx";
 import "./index.css";
-import Exercise, {loader as exerciseLoader} from "./routes/exercise/$number.tsx";
+import Exercise, {
+  loader as exerciseLoader,
+} from "./routes/exercise/$number.tsx";
+
+declare global {
+  var confetti: any;
+}
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,7 +26,11 @@ const router = createBrowserRouter(
           return redirect("/exercise/1");
         }}
       />
-      <Route path="exercise/:number" element={<Exercise />} loader={exerciseLoader}/>
+      <Route
+        path="exercise/:number"
+        element={<Exercise />}
+        loader={exerciseLoader}
+      />
     </Route>
   )
 );

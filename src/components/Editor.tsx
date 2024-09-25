@@ -30,7 +30,7 @@ function test(expect: string[]) {
     const current = Array.from(blocks).map((block) => {
       return block.style.backgroundColor;
     });
-    
+
     assert.deepEqual(sequence, current);
     return null;
   } catch (error) {
@@ -81,6 +81,11 @@ function Editor(props: {
               setTestErrorMessage(testError.message);
             } else {
               setTestErrorMessage(null);
+              confetti({
+                particleCount: 100,
+                spread: 80,
+                origin: { y: 0.8 },
+              });
             }
           }
         }
